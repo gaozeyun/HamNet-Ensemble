@@ -346,7 +346,7 @@ class DeepHE3Kernel:
         # get models
         model_path_list = self.find_model(eval_config.model_dir)
 
-        ### added by Zeyun-Gao:
+        ### DE-DeepH:
         use_ensemble = eval_config.ensemble_method != 'none'
         created_dirs = set()
         if use_ensemble:
@@ -379,7 +379,7 @@ class DeepHE3Kernel:
         
         print('\n------- Evaluating model -------')
         for index_model, model_path in enumerate(model_path_list):
-            ### added by Zeyun-Gao:
+            ### DE-DeepH:
             if use_ensemble:
                 weight = model_weights[index_model]
                 if weight < 1e-12:
@@ -417,7 +417,7 @@ class DeepHE3Kernel:
                 iterable = tqdm(enumerate(dataset)) if eval_config.test_only else enumerate(dataset)
                 for index_stru, data in iterable:
 
-                    ### added by Zeyun-Gao:
+                    ### DE-DeepH:
                     if len(H_pred_list) <= index_stru:
                         H_pred_list.append({})
                     if use_ensemble:
@@ -436,7 +436,7 @@ class DeepHE3Kernel:
                     output, output_edge = net(batch.to(device=eval_config.device))
                     H_pred = construct_kernel.get_H(output_edge).cpu()
 
-                    ### added by Zeyun-Gao:
+                    ### DE-DeepH:
                     if use_ensemble:
                         if model_count == 0:
                             H_mean[index_stru] = H_pred.clone()
@@ -467,7 +467,7 @@ class DeepHE3Kernel:
                     #    self.save_test_result(batch, H_pred, h5_fp)
                     ##
 
-            ### added by Zeyun-Gao:
+            ### DE-DeepH:
             if use_ensemble:
                 model_count += 1
                 total_sum_weights += weight
@@ -485,7 +485,7 @@ class DeepHE3Kernel:
             
             #print(f'Finished evaluating model {index_model} on all structures')
 
-        ### added by Zeyun-Gao:    
+        ### DE-DeepH:  
         if use_ensemble:
             print('\n------- Finalizing ensemble average and writing to h5 -------')
             for index_stru, data in enumerate(dataset):
@@ -530,7 +530,7 @@ class DeepHE3Kernel:
                 with h5py.File(os.path.join(eval_config.out_dir, f'{data.stru_id}/hamiltonians_pred.h5'), 'w') as f:
                     for k, v in H_dict.items():
                         f[k] = v
-            ### added by Zeyun-Gao:
+            ### DE-DeepH:
             if use_ensemble:
                 for S_dict, data in zip(S_pred_list, dataset):
                     outdir = os.path.join(eval_config.out_dir, data.stru_id)
@@ -713,7 +713,7 @@ class DeepHE3Kernel:
     def find_model(dir):
         model_path_list = []
 
-        ### added by Zeyun-Gao:
+        ### DE-DeepH:
         for path in dir.split('||'):
             clean_path = path.strip()  # 关键：清除首尾空格
             if not clean_path:  # 跳过空路径
@@ -902,7 +902,7 @@ class DeepHE3Kernel:
                             H_prev[key_term][slice_row, slice_col] = H_pred[index_edge, slice_out].reshape(len_row, len_col)
         return H_prev
 
-    ### added by Zeyun-Gao:
+    ### DE-DeepH:
     def update_hopping_var(self, H_prev, H_pred, node_attr, edge_index, edge_key, debug=False):
         module = torch
         dtype = H_pred.dtype
