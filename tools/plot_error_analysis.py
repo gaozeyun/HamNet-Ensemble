@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-误差分析可视化脚本
-读取 error_analyze.csv，绘制 MSE, MAE, Avg_STD 随 Delta 变化的图表
+Error Analysis Visualization Script
+Read error_analyze.csv and plot MSE, MAE, Avg_STD as functions of Delta
 """
 
 import os
@@ -15,14 +15,14 @@ import numpy as np
 
 def plot_error_analysis(csv_file, output_file, x_delta='Delta_cc', figsize=(24, 6), dpi=600):
     """
-    绘制误差分析图表
+    Plot error analysis charts
 
     Args:
-        csv_file: error_analyze.csv 文件路径
-        output_file: 输出图片路径
-        x_delta: 作为 x 轴的 Delta 列名 (Delta_cc, Delta_vdw, Delta_strain)
-        figsize: 图片尺寸 (width, height)
-        dpi: 图片分辨率
+        csv_file: Path to error_analyze.csv file
+        output_file: Output image path
+        x_delta: Delta column name to use as x-axis (Delta_cc, Delta_vdw, Delta_strain)
+        figsize: Figure size (width, height)
+        dpi: Image resolution
     """
     # 读取 CSV 文件
     data = []
@@ -30,11 +30,11 @@ def plot_error_analysis(csv_file, output_file, x_delta='Delta_cc', figsize=(24, 
         reader = csv.DictReader(f)
         for row in reader:
             # 过滤掉非数据行
-            if row['结构名称'] in ['统计项', '平均值', '总和', '结构数', '']:
+            if row['Structure Name'] in ['Statistics', 'Mean', 'Sum', 'Count', '']:
                 continue
             try:
                 data.append({
-                    'name': row['结构名称'],
+                    'name': row['Structure Name'],
                     'MSE': float(row['MSE']),
                     'MAE': float(row['MAE']),
                     'Avg_STD': float(row['Avg_STD']) if row.get('Avg_STD') else 0.0,
@@ -46,7 +46,7 @@ def plot_error_analysis(csv_file, output_file, x_delta='Delta_cc', figsize=(24, 
                 continue
 
     if len(data) == 0:
-        print('[!] 错误: 没有有效数据')
+        print('[!] Error: No valid data')
         return
 
     # 按 x 轴排序
@@ -159,17 +159,17 @@ def plot_error_analysis(csv_file, output_file, x_delta='Delta_cc', figsize=(24, 
     plt.savefig(output_file, dpi=dpi, bbox_inches='tight', facecolor='white')
     plt.close()
 
-    print(f"[*] 图表已保存至: {output_file}")
-    print(f"[*] 数据点数: {len(x)}")
-    print(f"[*] x轴范围: [{x.min():.2f}%, {x.max():.2f}%]")
+    print(f"[*] Chart saved to: {output_file}")
+    print(f"[*] Data points: {len(x)}")
+    print(f"[*] x-axis range: [{x.min():.2f}%, {x.max():.2f}%]")
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description='误差分析可视化工具 - 从 error_analyze.csv 绘制误差变化图表',
+        description='Error Analysis Visualization Tool - Plot error variation charts from error_analyze.csv',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
-示例:
+Examples:
   %(prog)s -i ./error_analyze.csv -o error_plot.png
   %(prog)s -i ./error_analyze.csv -o error_plot.png --x-delta Delta_cc
   %(prog)s -i ./error_analyze.csv -o error_plot.png --x-delta Delta_strain --figsize 12,6
@@ -177,34 +177,34 @@ def main():
     )
 
     parser.add_argument('-i', '--input', type=str, required=True,
-                        help='error_analyze.csv 文件路径')
+                        help='Path to error_analyze.csv file')
     parser.add_argument('-o', '--output', type=str, required=True,
-                        help='输出图片路径')
+                        help='Output image path')
     parser.add_argument('--x-delta', type=str, default='Delta_cc',
                         choices=['Delta_cc', 'Delta_vdw', 'Delta_strain'],
-                        help='作为 x 轴的 Delta 列名 (默认: Delta_cc)')
+                        help='Delta column name to use as x-axis (default: Delta_cc)')
     parser.add_argument('--figsize', type=str, default='24,6',
-                        help='图片尺寸，格式: width,height (默认: 24,6)')
+                        help='Figure size, format: width,height (default: 24,6)')
     parser.add_argument('--dpi', type=int, default=150,
-                        help='图片分辨率 (默认: 150)')
+                        help='Image resolution (default: 150)')
 
     args = parser.parse_args()
 
-    # 解析 figsize
+    # Parse figsize
     try:
         figsize = tuple(map(float, args.figsize.split(',')))
         if len(figsize) != 2:
             raise ValueError
     except ValueError:
-        print(f'[!] 错误: figsize 格式无效，应为 "width,height"')
+        print(f'[!] Error: Invalid figsize format, should be "width,height"')
         return 1
 
-    # 检查输入文件
+    # Check input file
     if not os.path.exists(args.input):
-        print(f'[!] 错误: 文件不存在 - {args.input}')
+        print(f'[!] Error: File not found - {args.input}')
         return 1
 
-    # 绘图
+    # Generate plot
     plot_error_analysis(
         csv_file=args.input,
         output_file=args.output,

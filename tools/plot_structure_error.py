@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-结构误差可视化脚本
-读取 structure.csv，绘制 MSE, MAE, Avg_STD 柱状图/折线图
+Structure Error Visualization Script
+Read structure.csv and plot MSE, MAE, Avg_STD bar/line charts
 """
 
 import os
@@ -19,13 +19,13 @@ DEFAULT_OUTPUT = r'D:\file\deep_ensemble\download\structure_plot.png'
 
 def plot_structure_error(csv_file, output_file, figsize=(20, 6), dpi=300):
     """
-    绘制结构误差图表
+    Plot structure error charts
 
     Args:
-        csv_file: structure.csv 文件路径
-        output_file: 输出图片路径
-        figsize: 图片尺寸 (width, height)
-        dpi: 图片分辨率
+        csv_file: Path to structure.csv file
+        output_file: Output image path
+        figsize: Figure size (width, height)
+        dpi: Image resolution
     """
     # 读取 CSV 文件
     data = []
@@ -34,7 +34,7 @@ def plot_structure_error(csv_file, output_file, figsize=(20, 6), dpi=300):
         for row in reader:
             try:
                 data.append({
-                    'name': row['结构名称'],
+                    'name': row['Structure Name'],
                     'MSE': float(row['MSE']),
                     'MAE': float(row['MAE']),
                     'Avg_STD': float(row['Avg_STD']) if row.get('Avg_STD') else 0.0
@@ -43,7 +43,7 @@ def plot_structure_error(csv_file, output_file, figsize=(20, 6), dpi=300):
                 continue
 
     if len(data) == 0:
-        print('[!] 错误: 没有有效数据')
+        print('[!] Error: No valid data')
         return
 
     # 提取数据
@@ -151,48 +151,48 @@ def plot_structure_error(csv_file, output_file, figsize=(20, 6), dpi=300):
     plt.savefig(output_file, dpi=dpi, bbox_inches='tight', facecolor='white')
     plt.close()
 
-    print(f"[*] 图表已保存至: {output_file}")
-    print(f"[*] 数据点数: {len(x)}")
-    print(f"[*] 结构: {', '.join(x_labels)}")
+    print(f"[*] Chart saved to: {output_file}")
+    print(f"[*] Data points: {len(x)}")
+    print(f"[*] Structure: {', '.join(x_labels)}")
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description='结构误差可视化工具 - 从 structure.csv 绘制误差图表',
+        description='Structure Error Visualization Tool - Plot error charts from structure.csv',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
-示例:
+Examples:
   %(prog)s -i ./structure.csv -o structure_plot.png
   %(prog)s -i ./structure.csv -o structure_plot.png --figsize 12,6
         '''
     )
 
     parser.add_argument('-i', '--input', type=str, default=DEFAULT_INPUT,
-                        help=f'structure.csv 文件路径 (默认: {DEFAULT_INPUT})')
+                        help=f'Path to structure.csv file (default: {DEFAULT_INPUT})')
     parser.add_argument('-o', '--output', type=str, default=DEFAULT_OUTPUT,
-                        help=f'输出图片路径 (默认: {DEFAULT_OUTPUT})')
+                        help=f'Output image path (default: {DEFAULT_OUTPUT})')
     parser.add_argument('--figsize', type=str, default='20,6',
-                        help='图片尺寸，格式: width,height (默认: 20,6)')
+                        help='Figure size, format: width,height (default: 20,6)')
     parser.add_argument('--dpi', type=int, default=150,
-                        help='图片分辨率 (默认: 150)')
+                        help='Image resolution (default: 150)')
 
     args = parser.parse_args()
 
-    # 解析 figsize
+    # Parse figsize
     try:
         figsize = tuple(map(float, args.figsize.split(',')))
         if len(figsize) != 2:
             raise ValueError
     except ValueError:
-        print(f'[!] 错误: figsize 格式无效，应为 "width,height"')
+        print(f'[!] Error: Invalid figsize format, should be "width,height"')
         return 1
 
-    # 检查输入文件
+    # Check input file
     if not os.path.exists(args.input):
-        print(f'[!] 错误: 文件不存在 - {args.input}')
+        print(f'[!] Error: File not found - {args.input}')
         return 1
 
-    # 绘图
+    # Generate plot
     plot_structure_error(
         csv_file=args.input,
         output_file=args.output,

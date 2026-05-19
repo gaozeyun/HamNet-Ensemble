@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-MSE/MAE 分析脚本
-从 test_result.h5 文件中提取预测误差统计信息
+MSE/MAE Analysis Script
+Extract prediction error statistics from test_result.h5 file
 
-功能:
-1. 输出所有体系各自的 MSE 和 MAE
-2. 输出所有体系总的 MSE 和 MAE
-3. 支持结构筛选 (include/exclude)
-4. 支持输出到 CSV 文件
-5. 解析 hamiltonians_std.h5，计算非零元平均标准差
-6. 读取 structure.json，计算 d_cc, d_vdw 变化率及应变信息
+Features:
+1. Output MSE and MAE for each individual system
+2. Output overall MSE and MAE for all systems
+3. Support structure filtering (include/exclude)
+4. Support exporting to CSV file
+5. Parse hamiltonians_std.h5, calculate mean standard deviation of non-zero entries
+6. Read structure.json, calculate d_cc, d_vdw change ratios and strain information
 """
 
 import os
@@ -439,54 +439,54 @@ def save_to_json(results, output_path):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='MSE/MAE 分析工具 - 从 test_result.h5 提取预测误差统计',
+        description='MSE/MAE Analysis Tool - Extract prediction error statistics from test_result.h5',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
-示例:
+example:
   %(prog)s -i ./test_result.h5
   %(prog)s -i ./test_result.h5 -o results.csv
   %(prog)s -i ./test_result.h5 --include "tbg_.*" --exclude ""
   %(prog)s -i ./test_result.h5 --json results.json
-  %(prog)s -i ./test_result.h5 --d-cc 1.42 --d-vdw 3.35  # 计算结构变化率
+  %(prog)s -i ./test_result.h5 --d-cc 1.42 --d-vdw 3.35  # Calculate structure change ratio
         '''
     )
 
     parser.add_argument('-i', '--input', type=str, required=True,
-                        help='test_result.h5 文件路径')
+                        help='Path to test_result.h5 file')
     parser.add_argument('-o', '--output', type=str, default=None,
-                        help='输出 CSV 文件路径 (默认: 不保存)')
+                        help='Output CSV file path (default: not saved)')
     parser.add_argument('--json', type=str, default=None,
-                        help='输出 JSON 文件路径 (默认: 不保存)')
+                        help='Output JSON file path (default: not saved)')
     parser.add_argument('--include', type=str, nargs='+', default=[],
-                        help='包含的结构名称正则表达式 (例如: "tbg_.*")')
+                        help='Regex for structure names to include (e.g., "tbg_.*")')
     parser.add_argument('--exclude', type=str, nargs='+', default=[],
-                        help='排除的结构名称正则表达式')
+                        help='Regex for structure names to exclude')
     parser.add_argument('-q', '--quiet', action='store_true',
-                        help='静默模式，不打印详细输出')
+                        help='Quiet mode, suppress detailed output')
     parser.add_argument('--d-cc', type=float, default=None,
-                        help='d_cc 的参考默认值，用于计算变化率 Delta_cc')
+                        help='Reference default value for d_cc, used to calculate Delta_cc change ratio')
     parser.add_argument('--d-vdw', type=float, default=None,
-                        help='d_vdw 的参考默认值，用于计算变化率 Delta_vdw')
+                        help='Reference default value for d_vdw, used to calculate Delta_vdw change ratio')
     parser.add_argument('--struct-dir', type=str, default=None,
-                        help='structure.json 所在的基础目录 (默认: 在 test_result.h5 同目录查找)')
+                        help='Base directory containing structure.json (default: look in same directory as test_result.h5)')
 
     args = parser.parse_args()
 
     # 检查输入文件
     if not os.path.exists(args.input):
-        print(f'[-] 错误: 文件不存在 - {args.input}')
+        print(f'[-] Error: File not found - {args.input}')
         return 1
 
-    print(f'[*] 分析文件: {args.input}')
-    print(f'[*] 时间: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
+    print(f'[*] Analyzing file: {args.input}')
+    print(f'[*] Time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 
     # 显示参考值设置
     if args.d_cc is not None:
-        print(f'[*] d_cc 参考值: {args.d_cc}')
+        print(f'[*] d_cc reference value: {args.d_cc}')
     if args.d_vdw is not None:
-        print(f'[*] d_vdw 参考值: {args.d_vdw}')
+        print(f'[*] d_vdw reference value: {args.d_vdw}')
     if args.struct_dir is not None:
-        print(f'[*] 结构信息目录: {args.struct_dir}')
+        print(f'[*] Structure info directory: {args.struct_dir}')
 
     # 执行分析
     results = analyze_errors(
