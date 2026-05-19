@@ -8,13 +8,9 @@ This repository contains the code used in the paper *[XXX]* (DOI: XXX), designed
 
 ## Relationship with DeepH-E3
 
-This codebase implements Deep Ensemble methods for Hamiltonian prediction, 
-using DeepH-E3 as an experimental framework for implementation reference.
+This codebase implements Deep Ensemble methods for Hamiltonian prediction, using DeepH-E3 as an experimental framework for implementation reference.
 
-**Note**: This project is an independent implementation and is NOT affiliated 
-with, endorsed by, or authorized by the DeepH team. The methodology proposed 
-(Deep Ensemble for Hamiltonian prediction) is a general approach and not 
-limited to DeepH-based implementations.
+> **Note**: This project is an independent implementation and is NOT affiliated with, endorsed by, or authorized by the DeepH team. The methodology proposed (Deep Ensemble for Hamiltonian prediction) is a general approach and not limited to DeepH-based implementations.
 
 ## Project Structure
 
