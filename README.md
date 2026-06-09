@@ -1,4 +1,4 @@
-# HNet-Ensemble
+# deep-ensamble-hamiltonian
 
 ## Overview
 
@@ -25,6 +25,7 @@ The repository includes the following files and directories:
 - **parse_configs.py**: Extended configuration parser supporting ensemble-related parameter settings. All modifications are annotated with `# DE-DeepH:` comments.
 - **Bilayer_graphene_eval_ensemble.ini**: An example evaluation configuration file for bilayer graphene, ready to use as a template.
 - **tools/**: Contains utility scripts for generating DFT inputs, post-processing predictions, and plotting results.
+- **models/**: Including the four models trained in this work.
 
 ## Installation and Usage
 

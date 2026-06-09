@@ -1,0 +1,154 @@
+Test loss: 4.4271e-07
+
+------- Detailed losses of each target -------
+Losses are sorted in descending order
+
+======= No.000: Target 000 =======
+Validation loss:            1.4722523684507537e-06
+Angular quantum numbers:    (0, 0)
+Target blocks:              {'6 6': [0, 0]}
+Position in H matrix:       {'6 6': [np.int64(0), np.int64(1), np.int64(0), np.int64(1)]}
+
+======= No.001: Target 006 =======
+Validation loss:            9.762181270376653e-07
+Angular quantum numbers:    (0, 0)
+Target blocks:              {'6 6': [1, 1]}
+Position in H matrix:       {'6 6': [np.int64(1), np.int64(2), np.int64(1), np.int64(2)]}
+
+======= No.002: Target 005 =======
+Validation loss:            8.29009546782567e-07
+Angular quantum numbers:    (0, 0)
+Target blocks:              {'6 6': [1, 0]}
+Position in H matrix:       {'6 6': [np.int64(1), np.int64(2), np.int64(0), np.int64(1)]}
+
+======= No.003: Target 018 =======
+Validation loss:            7.875131520486107e-07
+Angular quantum numbers:    (1, 1)
+Target blocks:              {'6 6': [3, 3]}
+Position in H matrix:       {'6 6': [np.int64(5), np.int64(8), np.int64(5), np.int64(8)]}
+
+======= No.004: Target 001 =======
+Validation loss:            6.451651826581179e-07
+Angular quantum numbers:    (0, 0)
+Target blocks:              {'6 6': [0, 1]}
+Position in H matrix:       {'6 6': [np.int64(0), np.int64(1), np.int64(1), np.int64(2)]}
+
+======= No.005: Target 008 =======
+Validation loss:            6.250406256547074e-07
+Angular quantum numbers:    (0, 1)
+Target blocks:              {'6 6': [1, 3]}
+Position in H matrix:       {'6 6': [np.int64(1), np.int64(2), np.int64(5), np.int64(8)]}
+
+======= No.006: Target 016 =======
+Validation loss:            6.165165504009407e-07
+Angular quantum numbers:    (1, 0)
+Target blocks:              {'6 6': [3, 1]}
+Position in H matrix:       {'6 6': [np.int64(5), np.int64(8), np.int64(1), np.int64(2)]}
+
+======= No.007: Target 021 =======
+Validation loss:            6.011266386552309e-07
+Angular quantum numbers:    (2, 0)
+Target blocks:              {'6 6': [4, 1]}
+Position in H matrix:       {'6 6': [np.int64(8), np.int64(13), np.int64(1), np.int64(2)]}
+
+======= No.008: Target 009 =======
+Validation loss:            5.521305776762766e-07
+Angular quantum numbers:    (0, 2)
+Target blocks:              {'6 6': [1, 4]}
+Position in H matrix:       {'6 6': [np.int64(1), np.int64(2), np.int64(8), np.int64(13)]}
+
+======= No.009: Target 024 =======
+Validation loss:            5.212064833557122e-07
+Angular quantum numbers:    (2, 2)
+Target blocks:              {'6 6': [4, 4]}
+Position in H matrix:       {'6 6': [np.int64(8), np.int64(13), np.int64(8), np.int64(13)]}
+
+======= No.010: Target 019 =======
+Validation loss:            4.7386962614952685e-07
+Angular quantum numbers:    (1, 2)
+Target blocks:              {'6 6': [3, 4]}
+Position in H matrix:       {'6 6': [np.int64(5), np.int64(8), np.int64(8), np.int64(13)]}
+
+======= No.011: Target 011 =======
+Validation loss:            4.6869871145656594e-07
+Angular quantum numbers:    (1, 0)
+Target blocks:              {'6 6': [2, 1]}
+Position in H matrix:       {'6 6': [np.int64(2), np.int64(5), np.int64(1), np.int64(2)]}
+
+======= No.012: Target 023 =======
+Validation loss:            4.494872762957756e-07
+Angular quantum numbers:    (2, 1)
+Target blocks:              {'6 6': [4, 3]}
+Position in H matrix:       {'6 6': [np.int64(8), np.int64(13), np.int64(5), np.int64(8)]}
+
+======= No.013: Target 015 =======
+Validation loss:            4.2708807504396133e-07
+Angular quantum numbers:    (1, 0)
+Target blocks:              {'6 6': [3, 0]}
+Position in H matrix:       {'6 6': [np.int64(5), np.int64(8), np.int64(0), np.int64(1)]}
+
+======= No.014: Target 017 =======
+Validation loss:            4.24707472162071e-07
+Angular quantum numbers:    (1, 1)
+Target blocks:              {'6 6': [3, 2]}
+Position in H matrix:       {'6 6': [np.int64(5), np.int64(8), np.int64(2), np.int64(5)]}
+
+======= No.015: Target 012 =======
+Validation loss:            4.03776804976696e-07
+Angular quantum numbers:    (1, 1)
+Target blocks:              {'6 6': [2, 2]}
+Position in H matrix:       {'6 6': [np.int64(2), np.int64(5), np.int64(2), np.int64(5)]}
+
+======= No.016: Target 013 =======
+Validation loss:            3.84854327245893e-07
+Angular quantum numbers:    (1, 1)
+Target blocks:              {'6 6': [2, 3]}
+Position in H matrix:       {'6 6': [np.int64(2), np.int64(5), np.int64(5), np.int64(8)]}
+
+======= No.017: Target 007 =======
+Validation loss:            3.6203060318283686e-07
+Angular quantum numbers:    (0, 1)
+Target blocks:              {'6 6': [1, 2]}
+Position in H matrix:       {'6 6': [np.int64(1), np.int64(2), np.int64(2), np.int64(5)]}
+
+======= No.018: Target 003 =======
+Validation loss:            3.292779113989028e-07
+Angular quantum numbers:    (0, 1)
+Target blocks:              {'6 6': [0, 3]}
+Position in H matrix:       {'6 6': [np.int64(0), np.int64(1), np.int64(5), np.int64(8)]}
+
+======= No.019: Target 002 =======
+Validation loss:            2.915071117797955e-07
+Angular quantum numbers:    (0, 1)
+Target blocks:              {'6 6': [0, 2]}
+Position in H matrix:       {'6 6': [np.int64(0), np.int64(1), np.int64(2), np.int64(5)]}
+
+======= No.020: Target 010 =======
+Validation loss:            2.747087472737466e-07
+Angular quantum numbers:    (1, 0)
+Target blocks:              {'6 6': [2, 0]}
+Position in H matrix:       {'6 6': [np.int64(2), np.int64(5), np.int64(0), np.int64(1)]}
+
+======= No.021: Target 014 =======
+Validation loss:            2.7388309208077995e-07
+Angular quantum numbers:    (1, 2)
+Target blocks:              {'6 6': [2, 4]}
+Position in H matrix:       {'6 6': [np.int64(2), np.int64(5), np.int64(8), np.int64(13)]}
+
+======= No.022: Target 020 =======
+Validation loss:            2.447518276920068e-07
+Angular quantum numbers:    (2, 0)
+Target blocks:              {'6 6': [4, 0]}
+Position in H matrix:       {'6 6': [np.int64(8), np.int64(13), np.int64(0), np.int64(1)]}
+
+======= No.023: Target 004 =======
+Validation loss:            2.3728643552776025e-07
+Angular quantum numbers:    (0, 2)
+Target blocks:              {'6 6': [0, 4]}
+Position in H matrix:       {'6 6': [np.int64(0), np.int64(1), np.int64(8), np.int64(13)]}
+
+======= No.024: Target 022 =======
+Validation loss:            2.3587249500451406e-07
+Angular quantum numbers:    (2, 1)
+Target blocks:              {'6 6': [4, 2]}
+Position in H matrix:       {'6 6': [np.int64(8), np.int64(13), np.int64(2), np.int64(5)]}
