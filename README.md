@@ -1,4 +1,4 @@
-# DE-DeepH
+# HamNet-Ensemble
 
 ## Overview
 
@@ -6,11 +6,9 @@ This repository contains the code used in the paper *[XXX]* (DOI: XXX), designed
 
 > **Note**: The modified sections in `kernel.py` and `parse_configs.py` are marked with comments `# DE-DeepH: ...` for easy identification.
 
-## Relationship with DeepH-E3
+## Based On
 
-This codebase implements Deep Ensemble methods for Hamiltonian prediction, using DeepH-E3 as an experimental framework for implementation reference.
-
-> **Note**: This project is an independent implementation and is NOT affiliated with, endorsed by, or authorized by the DeepH team. The methodology proposed (Deep Ensemble for Hamiltonian prediction) is a general approach and not limited to DeepH-based implementations.
+This codebase implements Deep Ensemble methods for Hamiltonian prediction, using [DeepH-E3](https://github.com/Xiaoxun-Gong/DeepH-E3.git) as an experimental framework for implementation reference.
 
 ## Project Structure
 
