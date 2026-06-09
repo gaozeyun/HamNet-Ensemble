@@ -1,4 +1,4 @@
-# HamNet-Ensemble
+# HNet-Ensemble
 
 ## Overview
 
