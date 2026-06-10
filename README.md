@@ -10,6 +10,12 @@ This repository contains the code used in the paper *[XXX]* (DOI: XXX), designed
 
 This codebase implements Deep Ensemble methods for Hamiltonian prediction, using [DeepH-E3](https://github.com/Xiaoxun-Gong/DeepH-E3.git) as an experimental framework for implementation reference.
 
+## Training Dataset
+
+The ensemble models in this work were trained using [dataset1](https://doi.org/10.5281/zenodo.7553640) from the DeepH-E3 dataset.
+
+The train/validation/test split follows the standard DeepH-E3 data-loading procedure and is determined by the saved training configuration and random seed. No separate manually curated split file was used. The saved `train.ini`, dataset metadata, and training logs included with each model document the split settings used in the reported runs.
+
 ## Project Structure
 
 The repository includes the following files and directories:
@@ -17,15 +23,16 @@ The repository includes the following files and directories:
 - `kernel.py`: Core ensemble module (modified from original DeepH-E3)
 - `parse_configs.py`: Configuration file parser (modified from original DeepH-E3)
 - `Bilayer_graphene_eval_ensemble.ini`: Reference evaluation configuration
-- `tools/`: Utility scripts directory containing tools for generating original DFT inputs, post-processing prediction data, and plotting results
+- `tools/`: Utility scripts for generating OpenMX input files, running/post-processing Hamiltonian calculations, evaluating prediction errors, and plotting analysis results
+- `models/`: Trained ensemble model artifacts and associated run metadata
 
 ### Core File Descriptions
 
 - **kernel.py**: Implements the core logic for ensemble evaluation, directly embedded into the DeepH-E3 inference workflow. All modifications are annotated with `# DE-DeepH:` comments.
 - **parse_configs.py**: Extended configuration parser supporting ensemble-related parameter settings. All modifications are annotated with `# DE-DeepH:` comments.
 - **Bilayer_graphene_eval_ensemble.ini**: An example evaluation configuration file for bilayer graphene, ready to use as a template.
-- **tools/**: Contains utility scripts for generating DFT inputs, post-processing predictions, and plotting results.
-- **models/**: Including the four models trained in this work.
+- **tools/**: Contains utility scripts used in the data-generation and analysis workflow. In particular, `build_carbon.py`, `graphene_builder.py`, and `graphene_builder.sh` generate carbon-structure/OpenMX input files; `sparse_calc.py`, `sparse_calc.jl`, and `band_calc.sh` support Hamiltonian and band-structure post-processing; `error_analysis.py` and `run_error_analysis.sh` calculate MSE/MAE statistics from prediction results; and `plot_error_analysis.py`, `plot_structure_error.py`, `band_plotter.py`, and related shell scripts generate the corresponding analysis and band-structure figures.
+- **models/**: Contains the four trained models used in this work, including model checkpoints, training configurations, target definitions, training logs, TensorBoard records, and train/test reports needed to inspect and reproduce the reported training runs.
 
 ## Installation and Usage
 
